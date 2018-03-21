@@ -1,0 +1,27 @@
+{
+  "name": "project-of-ice-and-fire",
+  "version": "1.0.0",
+  "description": "To help people understand, what the hell is going on in Game of Thrones?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garrettrm9/Project-of-Ice-and-Fire.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garrettrm9/Project-of-Ice-and-Fire/issues"
+  },
+  "homepage": "https://github.com/garrettrm9/Project-of-Ice-and-Fire#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mustache-express": "^1.2.5",
+    "npm": "^5.7.1",
+    "pg-promise": "^8.2.2"
+  }
+}
