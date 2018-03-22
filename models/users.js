@@ -1,8 +1,8 @@
 const axios = require("axios");
 const db = require("../db/index.js");
-const categories = {};
+const users = {};
 
-categories.allCategories = (req, res, next) => {
+users.allCategories = (req, res, next) => {
   console.log("allCategories, req.params.id", req.params.id);
   const id = req.params.id;
   db
@@ -18,7 +18,7 @@ categories.allCategories = (req, res, next) => {
     });
 };
 
-categories.newCategory = (req, res, next) => {
+users.newCategory = (req, res, next) => {
   // console.log("OOKKK", req.body);
   db
     .one(
@@ -36,11 +36,10 @@ categories.newCategory = (req, res, next) => {
     });
 };
 
-categories.deleteCategory = (req, res, next) => {
+users.deleteCategory = (req, res, next) => {
   db
-    .none("DELETE FROM categories where category.id = $1", [req.params.id])
-    .then(category => {
-      console.log("deleteCategory", category);
+    .none("DELETE FROM categories WHERE id = $1", [req.params.id])
+    .then(() => {
       next();
     })
     .catch(error => {
@@ -49,24 +48,4 @@ categories.deleteCategory = (req, res, next) => {
     });
 };
 
-// categories.updateCategory = (req, res, next) => {
-//   // console.log("req.body:", req.body);
-//   let { name, user_id, categoryId } = req.body;
-//   db
-//     .one("UPDATE activity SET name=$1, user_id=$2, WHERE id=$3 RETURNING *;", [
-//       name,
-//       user_id,
-//       categoryId
-//     ])
-//     .then(data => {
-//       res.locals.data = data;
-//       console.log("updateCategory", data);
-//       next();
-//     })
-//     .catch(err => {
-//       console.log("error encountered in updateCategory, err:", err);
-//       next(err);
-//     });
-// };
-
-module.exports = categories;
+module.exports = users;

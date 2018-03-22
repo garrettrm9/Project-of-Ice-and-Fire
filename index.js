@@ -34,8 +34,11 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-const categoriesRouter = require("./controllers/categories.js");
-app.use("/categories", categoriesRouter);
+const asoiafRouter = require("./controllers/asoiaf.js");
+app.use("/api/asoiaf", asoiafRouter);
+
+const userRouter = require("./controllers/users.js");
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res, next) => {
   res.redirect("/landing");
