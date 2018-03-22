@@ -19,7 +19,6 @@ DROP TABLE if exists characters;
 
 CREATE TABLE characters (
   id BIGSERIAL,
-  character_id INTEGER,
   name VARCHAR(255),  
   category_id INTEGER,
   FOREIGN KEY (category_id) REFERENCES categories(id)
