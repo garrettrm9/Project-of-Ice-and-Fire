@@ -25,11 +25,11 @@ router.delete("/category/:id", users.deleteCategory, (req, res) => {
   res.json();
 });
 
-// // ----------------------------------------------------
-// // Edit a user's category
-// router.put("/user/:id", categories.updateCategory, (req, res) => {
-//   console.log("in PUT an activity/, res.locals:", res.locals);
-//   res.json(res.locals.data);
-// });
+// ----------------------------------------------------
+// Edit a user's category
+router.put("/category/:id", users.updateCategory, (req, res) => {
+  console.log("category edited", res.locals);
+  res.json(res.locals.data);
+});
 
 module.exports = router;

@@ -48,4 +48,24 @@ users.deleteCategory = (req, res, next) => {
     });
 };
 
+users.updateCategory = (req, res, next) => {
+  // console.log("req.body:", req.body);
+  let { name, user_id } = req.body;
+  db
+    .one("UPDATE categories SET name=$1, user_id=$2 WHERE id=$3 RETURNING *;", [
+      name,
+      user_id,
+      req.params.id
+    ])
+    .then(data => {
+      res.locals.data = data;
+      console.log("updateCategory", data);
+      next();
+    })
+    .catch(err => {
+      console.log("error encountered in updateCategory, err:", err);
+      next(err);
+    });
+};
+
 module.exports = users;
