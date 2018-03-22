@@ -15,7 +15,7 @@ router.get("/:id", users.allCategories, (req, res) => {
 
 router.post("/:id", users.newCategory, (req, res) => {
   console.log(res.locals);
-  res.json(res.locals.categoryId);
+  res.json(res.locals);
 });
 
 // ----------------------------------------------------
@@ -29,7 +29,7 @@ router.delete("/category/:id", users.deleteCategory, (req, res) => {
 // Edit a user's category
 router.put("/category/:id", users.updateCategory, (req, res) => {
   console.log("category edited", res.locals);
-  res.json(res.locals.data);
+  res.json(res.locals);
 });
 
 module.exports = router;

@@ -49,31 +49,3 @@ app.use((err, req, res, next) => {
   res.status(500);
   res.send(err);
 });
-
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const morgan = require("morgan");
-// const session = require("express-session");
-
-// const app = express();
-// const cors = require("cors");
-// const PORT = process.env.PORT || 8080;
-
-// app.listen(PORT, () => {
-//   console.log("Server started on " + PORT);
-// });
-
-// app.use(cors())
-// app.use(morgan("dev"));
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-
-// app.get("/", (req, res, next) => {
-//   res.render("landing");
-// });
-
-// app.use((err, req, res, next) => {
-//   console.log("Error encountered:", err);
-//   res.status(500);
-//   res.send(err);
-// });
