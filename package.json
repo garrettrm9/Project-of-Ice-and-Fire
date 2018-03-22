@@ -18,10 +18,13 @@
   "homepage": "https://github.com/garrettrm9/Project-of-Ice-and-Fire#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "morgan": "^1.9.0",
     "mustache-express": "^1.2.5",
     "npm": "^5.7.1",
-    "pg-promise": "^8.2.2"
+    "pg-promise": "^8.2.2",
+    "router-express": "^1.5.2"
   }
 }
