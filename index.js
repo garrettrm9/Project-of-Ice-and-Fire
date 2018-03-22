@@ -1,18 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const mustacheExpress = require("mustache-express");
-const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log("Server started on " + port);
+});
+
+const mustacheExpress = require("mustache-express");
 
 app.engine("html", mustacheExpress());
 app.set("view engine", "html");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
+// set up session middleware
 app.use(
   session({
     secret: "keyboard cat",
@@ -22,29 +28,17 @@ app.use(
 );
 
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-app.listen(PORT, () => {
-  console.log("Server started on " + PORT);
-});
-
-// const userRouter = require("./controllers/users.js");
-// app.use("/users", userRouter);
-
 const categoriesRouter = require("./controllers/categories.js");
 app.use("/categories", categoriesRouter);
 
-// const charactersRouter = require("./controllers/characters.js");
-// app.use("/characters", charactersRouter);
-
-// const charactersAPIRouter = require("./controllers/api/characters.js");
-// app.use("/api/characters", charactersAPIRouter);
-
 app.get("/", (req, res, next) => {
-  res.render("landing");
+  res.redirect("/landing");
 });
 
 app.use((err, req, res, next) => {
@@ -52,3 +46,31 @@ app.use((err, req, res, next) => {
   res.status(500);
   res.send(err);
 });
+
+// const express = require("express");
+// const bodyParser = require("body-parser");
+// const morgan = require("morgan");
+// const session = require("express-session");
+
+// const app = express();
+// const cors = require("cors");
+// const PORT = process.env.PORT || 8080;
+
+// app.listen(PORT, () => {
+//   console.log("Server started on " + PORT);
+// });
+
+// app.use(cors())
+// app.use(morgan("dev"));
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
+// app.get("/", (req, res, next) => {
+//   res.render("landing");
+// });
+
+// app.use((err, req, res, next) => {
+//   console.log("Error encountered:", err);
+//   res.status(500);
+//   res.send(err);
+// });
