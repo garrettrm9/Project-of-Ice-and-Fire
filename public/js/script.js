@@ -6,13 +6,13 @@ $(document).ready(() => {
   $characterSearchForm.submit(e => {
     e.preventDefault();
     const data = $characterSearchName.val();
-    console.log("data:", data);
+    // console.log("data:", data);
     $.ajax({
       method: "get",
       dataType: "json",
       url: `/characters/search/${data}`,
       success: function(response) {
-        console.log("ajax API", response);
+        // console.log("ajax API", response);
         const $characterSearchResult = $("#character-search-result");
         $characterSearchResult.children().remove();
         $characterSearchResult.append(
@@ -35,9 +35,9 @@ $(document).ready(() => {
       method: "post",
       url: "/categories",
       data: { name: data },
-      // dataType: "json",
+      dataType: "json",
       success: function(response) {
-        console.log("success!", response);
+        // console.log("success!", response);
         window.location.href = "/categories";
       }
     });
@@ -51,6 +51,26 @@ $(document).ready(() => {
       method: "delete",
       url: `/categories/${categoryId}`,
       success: data => {
+        window.location.href = "/categories";
+      }
+    });
+  });
+
+  const $editCategoryForm = $(".edit-category-form");
+  const $editCategoryName = $(".edit-category-name");
+  $editCategoryForm.submit(e => {
+    e.preventDefault();
+    const categoryId = e.target.getAttribute("categoryId");
+    const data = $editCategoryName.val();
+    // console.log("categoryId", categoryId);
+    // console.log("data", data);
+    $.ajax({
+      method: "put",
+      url: `/categories/${categoryId}`,
+      data: { name: data },
+      dataType: "json",
+      success: response => {
+        // console.log("successful edit", response);
         window.location.href = "/categories";
       }
     });

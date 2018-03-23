@@ -12,18 +12,23 @@
     <h2>All available categories:</h2>
     <ul>
       {{#categoriesData}}
-        <li>
-          <a href="characters/{{id}}">
-            {{name}}
-          </a>
-        </li>
-        <button class="delete-category-button" categoryId="{{id}}">Delete category</button>
+        <div class="categories-container">
+          <div class="delete-categories-container">
+            <li>
+              <a href="characters/{{id}}">
+                {{name}}
+              </a>
+            </li>
+            <button class="delete-category-button" categoryId="{{id}}">Delete category</button>
+          </div>  
+
+        </div>  
       {{/categoriesData}}      
     </ul>
     <div id="add-new-category-container">
       <form action="/categories" method="POST" id="new-category-form" >
         <label >Add a new category!</label><br>
-        <input id="new-category-name" type="text" name="category[name]">
+        <input id="new-category-name" type="text">
         <input type="submit" value="Submit">
       </form>  
     </div>      

@@ -34,8 +34,8 @@ router.delete("/:id", categories.deleteCategory, (req, res) => {
 // ----------------------------------------------------
 // Edit a user's category (ID param is categoryId)
 router.put("/:id", categories.updateCategory, (req, res) => {
-  console.log("category edited", res.locals);
-  res.json(res.locals);
+  console.log("category edited", res.locals.editedCategory);
+  res.json({ editedCategory: res.locals.editedCategory });
 });
 
 module.exports = router;

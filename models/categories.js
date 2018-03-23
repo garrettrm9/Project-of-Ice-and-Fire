@@ -71,14 +71,15 @@ categories.deleteCategory = (req, res, next) => {
 // ----------------------------------------------------
 // Edit a user's category (ID param is categoryId)
 categories.updateCategory = (req, res, next) => {
+  console.log("updateCategory req.body", req.body);
   db
     .one("UPDATE categories SET name=$1 WHERE id=$2 RETURNING *;", [
       req.body.name,
       req.params.id
     ])
     .then(category => {
-      res.locals = category;
-      // console.log("updateCategory", data);
+      res.locals.editedCategory = category;
+      // console.log("updateCategory", res.locals.editedCategory);
       next();
     })
     .catch(err => {
