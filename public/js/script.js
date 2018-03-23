@@ -42,4 +42,17 @@ $(document).ready(() => {
       }
     });
   });
+
+  const $deleteCategoryButton = $(".delete-category-button");
+  $deleteCategoryButton.click(e => {
+    e.preventDefault();
+    const categoryId = e.target.getAttribute("categoryId");
+    $.ajax({
+      method: "delete",
+      url: `/categories/${categoryId}`,
+      success: data => {
+        window.location.href = "/categories";
+      }
+    });
+  });
 });
