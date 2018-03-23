@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const session = require("express-session");
+// const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -14,17 +14,17 @@ app.set("view engine", "html");
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true
-  })
-);
+// app.use(
+//   session({
+//     secret: "keyboard cat",
+//     resave: true,
+//     saveUninitialized: true
+//   })
+// );
 
-const auth = require("./services/auth.js");
-app.use(auth.passportInstance);
-app.use(auth.passportSession);
+// const auth = require("./services/auth.js");
+// app.use(auth.passportInstance);
+// app.use(auth.passportSession);
 
 app.use(morgan("dev"));
 
@@ -40,8 +40,8 @@ app.listen(port, () => {
 const asoiafRouter = require("./controllers/asoiaf.js");
 app.use("/api/asoiaf", asoiafRouter);
 
-const userRouter = require("./controllers/users.js");
-app.use("/users", userRouter);
+// const userRouter = require("./controllers/users.js");
+// app.use("/users", userRouter);
 
 app.get("/", (req, res, next) => {
   res.redirect("/user");

@@ -38,6 +38,20 @@ characters.findByName = (req, res, next) => {
 // };
 
 // -----------------------CHARACTERS------------------------- //
+characters.characters = (req, res, next) => {
+  db
+    .manyOrNone("SELECT * FROM characters")
+    .then(characters => {
+      // console.log("characters", res.locals);
+      res.locals = characters;
+      next();
+    })
+    .catch(error => {
+      console.log("error encountered in allCharacters", error);
+      next(error);
+    });
+};
+
 characters.allCharacters = (req, res, next) => {
   // console.log("allCharacters, req.params.id", req.params.id);
   db

@@ -1,36 +1,50 @@
-INSERT INTO users (id, email, password_digest) VALUES
-  (1, 'bob', 'bob'),
-  (2, 'tom', 'tom'),
-  (3, 'joe', 'joe'),
-  (4, 'stu', 'stu');  
+-- INSERT INTO users (id, email, password_digest) VALUES
+--   (1, 'bob', 'bob'),
+--   (2, 'tom', 'tom'),
+--   (3, 'joe', 'joe'),
+--   (4, 'stu', 'stu');  
 
-INSERT INTO categories (id, name, user_id) VALUES
-  (1, 'Good guys', 1),
-  (2, 'Bad guys', 1),
-  (3, 'Funny guys', 1),
-  (4, 'Good guys', 2),
-  (5, 'Bad guys', 2),
-  (6, 'Funny guys', 2),
-  (7, 'Good guys', 3),
-  (8, 'Bad guys', 3),
-  (9, 'Funny guys', 3),
-  (10, 'Good guys', 4),
-  (11, 'Bad guys', 4),
-  (12, 'Funny guys', 4);
+INSERT INTO categories (id, name) VALUES
+  (1, 'Good guys'),
+  (2, 'Bad guys'),
+  (3, 'Funny guys');
+  -- (4, 'Good guys'),
+  -- (5, 'Bad guys'),
+  -- (6, 'Funny guys'),
+  -- (7, 'Good guys'),
+  -- (8, 'Bad guys'),
+  -- (9, 'Funny guys'),
+  -- (10, 'Good guys'),
+  -- (11, 'Bad guys'),
+  -- (12, 'Funny guys');
 
 INSERT INTO characters (id, name, category_id) VALUES
   (1, 'Jon Snow', 1),
-  (2, 'Arya Stark', 4),
-  (3, 'Daenerys Targaryen', 7),
-  (4, 'Sansa Stark', 10),
+  (2, 'Arya Stark', 1),
+  (3, 'Daenerys Targaryen', 1),
+  (4, 'Sansa Stark', 1),
   (5, 'Tyrion Lannister', 3),
-  (6, 'Theon Greyjoy', 6),
-  (7, 'Petyr Baelish', 9),
-  (8, 'Bronn', 12),
+  (6, 'Theon Greyjoy', 3),
+  (7, 'Petyr Baelish', 3),
+  (8, 'Bronn', 3),
   (9, 'Ramsey Snow', 2),
-  (10, 'Walder Frey', 5),
-  (11, 'Roose Bolton', 8),
-  (12, 'Joffrey Baratheon', 11);
+  (10, 'Walder Frey', 2),
+  (11, 'Roose Bolton', 2),
+  (12, 'Joffrey Baratheon', 2);
+
+-- INSERT INTO categories (id, name, user_id) VALUES
+--   (1, 'Good guys', 1),
+--   (2, 'Bad guys', 1),
+--   (3, 'Funny guys', 1),
+--   (4, 'Good guys', 2),
+--   (5, 'Bad guys', 2),
+--   (6, 'Funny guys', 2),
+--   (7, 'Good guys', 3),
+--   (8, 'Bad guys', 3),
+--   (9, 'Funny guys', 3),
+--   (10, 'Good guys', 4),
+--   (11, 'Bad guys', 4),
+--   (12, 'Funny guys', 4);
 
 -- INSERT INTO characters (id, name, category_id) VALUES
 --   (1, 583, 'Jon Snow', 1),
