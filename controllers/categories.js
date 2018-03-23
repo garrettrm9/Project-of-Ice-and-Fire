@@ -19,8 +19,9 @@ router.get("/:id", categories.oneCategory, (req, res) => {
 // // ----------------------------------------------------
 // // Post a new category
 router.post("/", categories.newCategory, (req, res) => {
-  console.log("category posted", res.locals);
-  res.json(res.locals);
+  console.log("category posted", res.locals.newCategory);
+  // res.render("./main", { categoriesData: res.locals.newCategory });
+  res.json(res.locals.newCategory);
 });
 
 // ----------------------------------------------------

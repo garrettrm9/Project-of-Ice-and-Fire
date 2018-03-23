@@ -38,13 +38,14 @@ categories.allCategories = (req, res, next) => {
 // // ----------------------------------------------------
 // // Post a new category
 categories.newCategory = (req, res, next) => {
+  console.log("newCategory test", req.body);
   db
     .one("INSERT INTO categories (name) VALUES ($1) RETURNING *", [
       req.body.name
     ])
     .then(category => {
       // console.log("newCategory", res.locals);
-      res.locals = category;
+      res.locals.newCategory = category;
       next();
     })
     .catch(error => {

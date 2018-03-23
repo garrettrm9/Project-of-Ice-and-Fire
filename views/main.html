@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script> 
     <title>Main</title>
   </head>
   <body>
@@ -17,6 +19,13 @@
         </li>
       {{/categoriesData}}      
     </ul>
+    <div id="add-new-category-container">
+      <form action="/categories" method="POST" id="new-category-form" >
+        <label >Add a new category!</label><br>
+        <input id="new-category-name" type="text" name="category[name]">
+        <input type="submit" value="Submit">
+      </form>  
+    </div>      
     <a href="/">Back to landing!</a>    
   </body>
 </html>

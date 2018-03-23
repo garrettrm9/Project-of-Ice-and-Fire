@@ -6,7 +6,7 @@ $(document).ready(() => {
   $characterSearchForm.submit(e => {
     e.preventDefault();
     const data = $characterSearchName.val();
-    // console.log("data:", data);
+    console.log("data:", data);
     $.ajax({
       method: "get",
       dataType: "json",
@@ -21,9 +21,24 @@ $(document).ready(() => {
         $characterSearchResult.append(
           $("<p>", { text: "Gender: " + response.gender })
         );
-        $characterSearchResult.append(
-          $("<p>", { text: "Culture: " + response.culture })
-        );
+      }
+    });
+  });
+
+  const $newCategoryForm = $("#new-category-form");
+  const $newCategoryName = $("#new-category-name");
+  $newCategoryForm.submit(e => {
+    e.preventDefault();
+    const data = $newCategoryName.val();
+    // console.log("data:", data);
+    $.ajax({
+      method: "post",
+      url: "/categories",
+      data: { name: data },
+      // dataType: "json",
+      success: function(response) {
+        console.log("success!", response);
+        window.location.href = "/categories";
       }
     });
   });
