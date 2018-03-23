@@ -1,4 +1,4 @@
-INSERT INTO users (id, username, password_digest) VALUES
+INSERT INTO users (id, email, password_digest) VALUES
   (1, 'bob', 'bob'),
   (2, 'tom', 'tom'),
   (3, 'joe', 'joe'),

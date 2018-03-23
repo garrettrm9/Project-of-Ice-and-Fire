@@ -1,57 +1,58 @@
 const router = require("express").Router();
-const users = require("../models/users.js");
+const users = require("../models/users");
+const passport = require("passport");
+const auth = require("../services/auth");
 
-// ------------CATEGORIES------------- //
+// ----------------------------------------
+// users index
 
-// ----------------------------------------------------
-// Renders all user's categories (ID param is userId)
-router.get("/category/:id", users.allCategories, (req, res) => {
-  console.log("category retrieved", res.locals);
-  res.json(res.locals);
+router.get("/", (req, res, next) => {
+  res.redirect("/users/profile");
 });
 
-// // ----------------------------------------------------
-// // Post a user's new category (ID param is userId)
-router.post("/category/:id", users.newCategory, (req, res) => {
-  console.log("category posted", res.locals);
-  res.json(res.locals);
+router.post(
+  "/",
+  passport.authenticate("local-signup", {
+    failureRedirect: "/users/new",
+    successRedirect: "/users/profile"
+  })
+);
+
+// ----------------------------------------
+// register new user
+
+router.get("/register", (req, res) => {
+  res.render("register");
 });
 
-// ----------------------------------------------------
-// Delete a user's category (ID param is categoryId)
-router.delete("/category/:id", users.deleteCategory, (req, res) => {
-  console.log("category deleted", res.locals);
-  res.json();
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/landing");
 });
 
-// ----------------------------------------------------
-// Edit a user's category (ID param is categoryId)
-router.put("/category/:id", users.updateCategory, (req, res) => {
-  console.log("category edited", res.locals);
-  res.json(res.locals);
+// ----------------------------------------
+// user login
+
+router.get("/login", (req, res) => {
+  res.render("/login");
 });
 
-// ------------CHARACTERS------------- //
+router.post(
+  "/login",
+  passport.authenticate("local-login", {
+    failureRedirect: "/users/login",
+    successRedirect: "/users/profile"
+  })
+);
 
-// ----------------------------------------------------
-// Renders all category's characters (ID param is categoryId)
-router.get("/character/:id", users.allCharacters, (req, res) => {
-  console.log("characters retrieved", res.locals);
-  res.json(res.locals);
-});
+// ----------------------------------------
+// user profile
 
-// // ----------------------------------------------------
-// // Adds character to category (ID param is categoryId)
-router.post("/character/:id", users.newCharacter, (req, res) => {
-  console.log("character posted", res.locals);
-  res.json(res.locals);
-});
-
-// ----------------------------------------------------
-// Delete a character (ID param is characterId)
-router.delete("/character/:id", users.deleteCharacter, (req, res) => {
-  console.log("character deleted", res.locals);
-  res.json();
+router.get("/user", auth.restrict, users.findByEmailMiddleware, (req, res) => {
+  // console.log("in handler for users/profile");
+  // console.log("req.user:");
+  // console.log(req.user);
+  res.render("/user", { user: res.locals.userData });
 });
 
 module.exports = router;

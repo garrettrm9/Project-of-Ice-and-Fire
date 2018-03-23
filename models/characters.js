@@ -2,6 +2,7 @@ const db = require("../db/index.js");
 const axios = require("axios");
 const characters = {};
 
+// ----------------------ASOIAF API calls----------------------- //
 characters.findByName = (req, res, next) => {
   const characterName = req.params.characterName;
   // console.log("charactersModel findByName", characterName);
@@ -35,5 +36,51 @@ characters.findByName = (req, res, next) => {
 //       next(err);
 //     });
 // };
+
+// -----------------------CHARACTERS------------------------- //
+characters.allCharacters = (req, res, next) => {
+  // console.log("allCharacters, req.params.id", req.params.id);
+  db
+    .manyOrNone(`SELECT * FROM characters WHERE category_id = ${req.params.id}`)
+    .then(characters => {
+      // console.log("allCharacters", res.locals);
+      res.locals = characters;
+      next();
+    })
+    .catch(error => {
+      console.log("error encountered in allCharacters", error);
+      next(error);
+    });
+};
+
+characters.newCharacter = (req, res, next) => {
+  // console.log("newCharacter, req.params.id", req.params.id);
+  db
+    .one(
+      "INSERT INTO characters (name, category_id) VALUES ($1, $2) RETURNING *",
+      [req.body.name, req.params.id]
+    )
+    .then(character => {
+      // console.log("newCharacter", res.locals);
+      res.locals = character;
+      next();
+    })
+    .catch(error => {
+      console.log("error encountered in newCharacter", error);
+      next(error);
+    });
+};
+
+characters.deleteCharacter = (req, res, next) => {
+  db
+    .none("DELETE FROM characters WHERE id = $1", [req.params.id])
+    .then(() => {
+      next();
+    })
+    .catch(error => {
+      console.log("error encountered in deleteCharacter", error);
+      next(error);
+    });
+};
 
 module.exports = characters;

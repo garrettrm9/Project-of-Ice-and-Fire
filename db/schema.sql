@@ -2,7 +2,7 @@ DROP TABLE if exists users CASCADE;
 
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
-  username VARCHAR(20) UNIQUE,
+  email VARCHAR(20) UNIQUE,
   password_digest VARCHAR NOT NULL
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE categories (
 DROP TABLE if exists characters;
 
 CREATE TABLE characters (
-  id BIGSERIAL,
+  id BIGSERIAL PRIMARY KEY,
   name VARCHAR(255),  
   category_id INTEGER,
   FOREIGN KEY (category_id) REFERENCES categories(id)
