@@ -2,11 +2,11 @@ $(document).ready(() => {
   console.log("loading");
 
   const $characterSearchForm = $("#character-search-form");
-
+  const $characterSearchName = $("#character-search-name");
   $characterSearchForm.submit(e => {
     e.preventDefault();
-    const data = $(e.target).serialize();
-    console.log("data:", data);
+    const data = $characterSearchName.val();
+    // console.log("data:", data);
     $.ajax({
       method: "get",
       dataType: "json",
@@ -15,7 +15,7 @@ $(document).ready(() => {
         console.log("ajax API", response);
         const $characterSearchResult = $("#character-search-result");
         $characterSearchResult.children().remove();
-        // $characterSearchResult.append($("<p>", { text: data.name }));
+        $characterSearchResult.append($("<p>", { text: response.name }));
       }
     });
   });
