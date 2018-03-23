@@ -95,4 +95,8 @@ $(document).ready(() => {
       }
     });
   });
+
+  // const $time = $("#time");
+  // const currentTime = ;
+  // console.log("currentTime", currentTime);
 });

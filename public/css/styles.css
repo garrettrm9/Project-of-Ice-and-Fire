@@ -1,0 +1,21 @@
+* {
+  background-color: gray;
+  font-family: "Cantata One", serif;
+}
+
+body {
+  text-align: center;
+  color: white;
+}
+
+.categories-box {
+  text-align: left;
+}
+
+button {
+  color: white;
+}
+
+a {
+  color: blue;
+}

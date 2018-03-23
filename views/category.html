@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>    
     <title>Category</title>
@@ -17,7 +19,7 @@
           </form>
         </div>
     <h3>All the characters in this category:</h3>
-    <ul>
+    <ul class="categories-box">
       {{#allCharactersData}}
         <li>{{name}}</li>
       {{/allCharactersData}}
