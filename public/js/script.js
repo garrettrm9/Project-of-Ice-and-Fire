@@ -10,7 +10,7 @@ $(document).ready(() => {
     $.ajax({
       method: "get",
       dataType: "json",
-      url: `/characters/character/search/${data}`,
+      url: `/characters/search/${data}`,
       success: function(response) {
         console.log("ajax API", response);
         const $characterSearchResult = $("#character-search-result");

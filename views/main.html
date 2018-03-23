@@ -8,6 +8,14 @@
   <body>
     <h1>Main!</h1>
     <a href="/">Back to landing!</a>
-    <a href="category">Category show page!</a>
+    <ul>
+      {{#categoriesData}}
+        <li>
+          <a href="characters/{{id}}">
+            {{name}}
+          </a>
+        </li>
+      {{/categoriesData}}      
+    </ul>
   </body>
 </html>

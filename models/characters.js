@@ -46,7 +46,7 @@ characters.characters = (req, res, next) => {
     .manyOrNone("SELECT * FROM characters")
     .then(characters => {
       // console.log("characters", res.locals);
-      res.locals = characters;
+      res.locals.charactersData = characters;
       next();
     })
     .catch(error => {
@@ -61,7 +61,7 @@ characters.allCharacters = (req, res, next) => {
     .manyOrNone(`SELECT * FROM characters WHERE category_id = ${req.params.id}`)
     .then(characters => {
       // console.log("allCharacters", res.locals);
-      res.locals = characters;
+      res.locals.allCharactersData = characters;
       next();
     })
     .catch(error => {

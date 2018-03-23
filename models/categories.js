@@ -10,8 +10,8 @@ categories.oneCategory = (req, res, next) => {
   db
     .manyOrNone("SELECT * FROM categories WHERE id = $1", [req.params.id])
     .then(category => {
-      res.locals = category;
-      console.log("categoryModel oneCategory", res.locals);
+      res.locals.oneCategoryData = category;
+      // console.log("categoryModel oneCategory", res.locals);
       next();
     })
     .catch(error => {
@@ -25,7 +25,7 @@ categories.allCategories = (req, res, next) => {
   db
     .manyOrNone("SELECT * FROM categories")
     .then(categories => {
-      res.locals = categories;
+      res.locals.allCategoriesData = categories;
       // console.log("allCategories", res.locals);
       next();
     })

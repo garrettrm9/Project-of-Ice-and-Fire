@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const characters = require("../models/characters.js");
 
-// router.get("/", (req, res, next) => {
-//   res.redirect("/users/profile");
-// });
-
 // // API call for character based on character's name URL param
-router.get("/character/search/:name", characters.findByName, (req, res) => {
+router.get("/search/:name", characters.findByName, (req, res) => {
   console.log("characters controller", res.locals);
   res.json(res.locals);
 });
@@ -21,28 +17,28 @@ router.get("/character/search/:name", characters.findByName, (req, res) => {
 
 // ----------------------------------------------------
 // Renders all characters WITHOUT category ID
-router.get("/character", characters.characters, (req, res) => {
-  console.log("characters ALL retrieved", res.locals);
-  res.json(res.locals);
+router.get("/", characters.characters, (req, res) => {
+  console.log("characters ALL retrieved", res.locals.charactersData);
+  res.json(res.locals.charactersData);
 });
 
 // ----------------------------------------------------
 // Renders all category's characters (ID param is categoryId)
-router.get("/character/:id", characters.allCharacters, (req, res) => {
-  console.log("characters retrieved", res.locals);
-  res.json(res.locals);
+router.get("/:id", characters.allCharacters, (req, res) => {
+  console.log("characters retrieved", res.locals.allCharactersData);
+  res.render("./category", { allCharactersData: res.locals.allCharactersData });
 });
 
 // // ----------------------------------------------------
 // // Adds character to category (ID param is categoryId)
-router.post("/character/:id", characters.newCharacter, (req, res) => {
+router.post("/:id", characters.newCharacter, (req, res) => {
   console.log("character posted", res.locals);
   res.json(res.locals);
 });
 
 // ----------------------------------------------------
 // Delete a character (ID param is characterId)
-router.delete("/character/:id", characters.deleteCharacter, (req, res) => {
+router.delete("/:id", characters.deleteCharacter, (req, res) => {
   console.log("character deleted", res.locals);
   res.json();
 });

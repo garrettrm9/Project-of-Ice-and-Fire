@@ -18,6 +18,12 @@
       </div>  
       <div id="character-search-result"></div>
     <a href="/">Back to landing!</a>
-    <a href="/main">Back to main</a>    
+    <a href="/categories">Back to main</a>
+    <ul>
+      {{#allCharactersData}}
+        <li>
+            {{name}}
+        </li>
+      {{/allCharactersData}}    
   </body>
 </html>

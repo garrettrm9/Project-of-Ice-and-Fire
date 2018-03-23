@@ -50,9 +50,9 @@ app.get("/", (req, res, next) => {
   res.render("./landing");
 });
 
-app.get("/main", (req, res, next) => {
-  res.render("./main");
-});
+// app.get("/main", (req, res, next) => {
+//   res.render("./main");
+// });
 
 app.get("/category", (req, res, next) => {
   res.render("./category");
