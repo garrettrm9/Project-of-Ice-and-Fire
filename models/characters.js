@@ -3,15 +3,18 @@ const axios = require("axios");
 const characters = {};
 
 // ----------------------ASOIAF API calls----------------------- //
+// ----------------------------------------------------
+// // API call for character based on character's name URL param
 characters.findByName = (req, res, next) => {
-  const characterName = req.params.characterName;
+  const name = req.params.name;
   // console.log("charactersModel findByName", characterName);
   axios({
-    url: `https://anapioficeandfire.com/api/characters?name=${characterName}`,
+    url: `https://anapioficeandfire.com/api/characters?name=${name}`,
     method: "get"
   })
     .then(response => {
-      res.locals = response.data;
+      // console.log("response", response.data[0].name);
+      res.locals = response.data[0];
       next();
     })
     .catch(err => {

@@ -3,9 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script>    
     <title>Category</title>
   </head>
   <body>
     <h1>Category!</h1>
+      <div id="character-search-form">
+        <form action="/characters/character/search/:name" method="GET">
+          <label >Search for a character</label><br>
+          <input id="character-search-name" type="text">
+          <input type="submit" value="Search">
+        </form>  
+      </div>  
+      <div id="character-search-result"></div>
+    <a href="/">Back to landing!</a>
+    <a href="/main">Back to main</a>    
   </body>
 </html>

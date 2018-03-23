@@ -37,14 +37,25 @@ app.listen(port, () => {
   console.log("Server started on " + port);
 });
 
-const asoiafRouter = require("./controllers/asoiaf.js");
-app.use("/api/asoiaf", asoiafRouter);
+const characterRouter = require("./controllers/characters.js");
+app.use("/characters", characterRouter);
+
+const categoryRouter = require("./controllers/categories.js");
+app.use("/categories", categoryRouter);
 
 // const userRouter = require("./controllers/users.js");
 // app.use("/users", userRouter);
 
 app.get("/", (req, res, next) => {
-  res.redirect("/user");
+  res.render("./landing");
+});
+
+app.get("/main", (req, res, next) => {
+  res.render("./main");
+});
+
+app.get("/category", (req, res, next) => {
+  res.render("./category");
 });
 
 app.use((err, req, res, next) => {
