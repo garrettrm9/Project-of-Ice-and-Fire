@@ -9,21 +9,21 @@
   </head>
   <body>
     <h1>Category!</h1>
-      <div id="character-search-container">
-        <form action="/characters/character/search/:name" method="GET" id="character-search-form">
-          <label >Search for a character</label><br>
-          <input id="character-search-name" type="text">
-          <input type="submit" value="Search">
-        </form>  
-      </div>  
-      <div id="character-search-result"></div>
-    <a href="/">Back to landing!</a>
-    <a href="/categories">Back to main</a>
+    <h2>All the characters in this category:</h2>
     <ul>
       {{#allCharactersData}}
-        <li>
-            {{name}}
-        </li>
-      {{/allCharactersData}}    
+        <li>{{name}}</li>
+      {{/allCharactersData}}
+    </ul>        
+    <div id="character-search-container">
+      <form action="/characters/character/search/:name" method="GET" id="character-search-form">
+        <label >Search for a character</label><br>
+        <input id="character-search-name" type="text">
+        <input type="submit" value="Search">
+      </form>  
+    </div>  
+    <div id="character-search-result"></div>
+    <a href="/">Back to landing!</a>
+    <a href="/categories">Back to main</a>    
   </body>
 </html>

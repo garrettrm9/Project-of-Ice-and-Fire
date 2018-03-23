@@ -15,7 +15,15 @@ $(document).ready(() => {
         console.log("ajax API", response);
         const $characterSearchResult = $("#character-search-result");
         $characterSearchResult.children().remove();
-        $characterSearchResult.append($("<p>", { text: response.name }));
+        $characterSearchResult.append(
+          $("<p>", { text: "Name: " + response.name })
+        );
+        $characterSearchResult.append(
+          $("<p>", { text: "Gender: " + response.gender })
+        );
+        $characterSearchResult.append(
+          $("<p>", { text: "Culture: " + response.culture })
+        );
       }
     });
   });
