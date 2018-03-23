@@ -13,8 +13,9 @@ characters.findByName = (req, res, next) => {
     method: "get"
   })
     .then(response => {
-      // console.log("response", response.data[0].name);
-      res.locals = response.data[0];
+      res.locals.apiData = response.data[0];
+      res.locals.apiData.category_id = req.params.id;
+      // console.log("res.locals.apiData", res.locals.apiData);
       next();
     })
     .catch(err => {
@@ -80,7 +81,7 @@ characters.newCharacter = (req, res, next) => {
     )
     .then(character => {
       // console.log("newCharacter", res.locals);
-      res.locals = character;
+      res.locals.newCharacter = character;
       next();
     })
     .catch(error => {

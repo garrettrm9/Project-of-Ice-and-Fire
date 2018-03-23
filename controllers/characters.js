@@ -2,9 +2,9 @@ const router = require("express").Router();
 const characters = require("../models/characters.js");
 
 // // API call for character based on character's name URL param
-router.get("/search/:name", characters.findByName, (req, res) => {
-  console.log("characters controller", res.locals);
-  res.json(res.locals);
+router.get("/:id/search/:name", characters.findByName, (req, res) => {
+  // console.log("API character search", res.locals.apiData);
+  res.json(res.locals.apiData);
 });
 
 // // // ----------------------------------------------------
@@ -32,8 +32,8 @@ router.get("/:id", characters.allCharacters, (req, res) => {
 // // ----------------------------------------------------
 // // Adds character to category (ID param is categoryId)
 router.post("/:id", characters.newCharacter, (req, res) => {
-  console.log("character posted", res.locals);
-  res.json(res.locals);
+  console.log("character posted", res.locals.newCharacter);
+  res.json(res.locals.newCharacter);
 });
 
 // ----------------------------------------------------

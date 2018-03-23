@@ -9,12 +9,13 @@
   </head>
   <body>
     <h1>Category!</h1>
-          <div id="edit-categories-container">
-            <form action="/categories/:id" method="PUT" class="edit-category-form" categoryId="{{allCharactersData.category_id}}">
-              <input class="edit-category-name" type="text">
-              <input type="submit" value="Send edits">
-            </form>
-          </div>
+      <h2>Edit category name here:</h2>
+        <div id="edit-categories-container">
+          <form action="/categories/:id" method="PUT" class="edit-category-form" categoryId="{{allCharactersData.category_id}}">
+            <input class="edit-category-name" type="text">
+            <input type="submit" value="Send edits">
+          </form>
+        </div>
     <h3>All the characters in this category:</h3>
     <ul>
       {{#allCharactersData}}
@@ -22,14 +23,17 @@
       {{/allCharactersData}}
     </ul>        
     <div id="character-search-container">
-      <form action="/search/:name" method="GET" id="character-search-form">
+      <form action="/:id/search/:name" method="GET" id="character-search-form" categoryId="{{allCharactersData.category_id}}">
         <label >Search for a character</label><br>
         <input id="character-search-name" type="text">
-        <input type="submit" value="Search">
+        <input type="submit" value="Search"><br>
       </form>  
     </div>  
-    <div id="character-search-result"></div>
-    <a href="/">Back to landing!</a>
+    <div id="character-search-result"></div><br>
+    <button id='add-character-button' categoryId="{{allCharactersData.category_id}}">
+      Add this new character to the category!
+    </button><br>
+    <a href="/">Back to landing</a><br>
     <a href="/categories">Back to main</a>    
   </body>
 </html>

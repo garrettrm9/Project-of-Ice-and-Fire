@@ -5,22 +5,42 @@ $(document).ready(() => {
   const $characterSearchName = $("#character-search-name");
   $characterSearchForm.submit(e => {
     e.preventDefault();
-    const data = $characterSearchName.val();
+    const name = $characterSearchName.val();
+    const id = e.target.getAttribute("categoryId");
     // console.log("data:", data);
     $.ajax({
       method: "get",
       dataType: "json",
-      url: `/characters/search/${data}`,
+      url: `/characters/${id}/search/${name}`,
       success: function(response) {
         // console.log("ajax API", response);
         const $characterSearchResult = $("#character-search-result");
         $characterSearchResult.children().remove();
         $characterSearchResult.append(
-          $("<p>", { text: "Name: " + response.name })
+          $("<p>", {
+            text: response.name,
+            id: "character-name"
+          })
         );
-        $characterSearchResult.append(
-          $("<p>", { text: "Gender: " + response.gender })
-        );
+        console.log("response.name", response.name);
+      }
+    });
+  });
+
+  const $addCharacterButton = $("#add-character-button");
+  $addCharacterButton.click(e => {
+    e.preventDefault();
+    const $characterName = $("#character-name")[0].innerHTML;
+    const id = e.target.getAttribute("categoryId");
+    console.log("addCharacterButton", id);
+    const data = $characterName;
+    console.log("addCharacterButton", data);
+    $.ajax({
+      method: "post",
+      url: `/characters/${id}`,
+      data: { name: data },
+      success: data => {
+        window.location.href = "/categories";
       }
     });
   });
