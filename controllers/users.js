@@ -5,54 +5,49 @@ const auth = require("../services/auth");
 
 // ----------------------------------------
 // users index
-
 router.get("/", (req, res, next) => {
-  res.redirect("/users/profile");
+  res.redirect("/users/user");
 });
 
 router.post(
   "/",
   passport.authenticate("local-signup", {
-    failureRedirect: "/users/new",
-    successRedirect: "/users/profile"
+    failureRedirect: "/users/register",
+    successRedirect: "/users/user"
   })
 );
 
 // ----------------------------------------
 // register new user
-
-router.get("/register", (req, res) => {
-  res.render("register");
+router.get("/new", (req, res) => {
+  res.render("users/register");
 });
 
+// ----------------------------------------
+// user logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/landing");
+  res.redirect("/");
 });
 
 // ----------------------------------------
 // user login
-
 router.get("/login", (req, res) => {
-  res.render("/login");
+  res.render("/users/login");
 });
 
 router.post(
   "/login",
   passport.authenticate("local-login", {
     failureRedirect: "/users/login",
-    successRedirect: "/users/profile"
+    successRedirect: "/users/user"
   })
 );
 
 // ----------------------------------------
 // user profile
-
 router.get("/user", auth.restrict, users.findByEmailMiddleware, (req, res) => {
-  // console.log("in handler for users/profile");
-  // console.log("req.user:");
-  // console.log(req.user);
-  res.render("/user", { user: res.locals.userData });
+  res.render("/users/user", { user: res.locals.userData });
 });
 
 module.exports = router;
